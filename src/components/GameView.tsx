@@ -9,11 +9,10 @@ import { saveGameState } from '../utils/gameStorage';
 
 interface GameViewProps {
   initialState: GameState;
-  onBack: () => void;
   onNewGame: () => void;
 }
 
-export function GameView({ initialState, onBack, onNewGame }: GameViewProps) {
+export function GameView({ initialState, onNewGame }: GameViewProps) {
   const [gameState, setGameState] = useState<GameState>(initialState);
   const [history, setHistory] = useState<HistoryEntry[]>(() => {
     const saved = localStorage.getItem('triominos-history');
@@ -62,7 +61,6 @@ export function GameView({ initialState, onBack, onNewGame }: GameViewProps) {
   };
 
   const currentPlayer = gameState.players[gameState.currentPlayerIndex];
-  const allPassed = gameState.players.every((p) => p.hasPassed);
 
   const updatePlayer = (playerId: string, updates: Partial<Player>) => {
     setGameState((prev) => ({

@@ -77,7 +77,6 @@ function App() {
               ) : (
                 <GameView
                   initialState={gameState}
-                  onBack={() => setGameState(null)}
                   onNewGame={handleNewGame}
                 />
               )
